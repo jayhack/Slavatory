@@ -66,7 +66,7 @@ def close_db(error):
 @app.route('/')
 def show_entries():
     db = get_db()
-    cur = db.execute('select text from entries_test order by id desc')
+    cur = db.execute('select text from entries_test order by id asc')
     entries = cur.fetchall()
     return render_template('show_entries.html', entries=entries)
 
