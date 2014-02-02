@@ -113,7 +113,19 @@ def add_entry():
 # Function: add_image
 # -------------------
 # allows you to add an image
-def add_image (url, artist, description):
+@app.route ('/add_image', methods=['GET'])
+def add_image ():
+    
+    url = request.args.get('url')
+    artist = request.args.get('artist')
+    description = request.args.get('description')
+
+
+
+# Function: add_image
+# -------------------
+# allows you to add an image
+def put_in_image (url, artist, description):
     db = get_db ()
     db.execute ('insert into images (url, artist, description) values (?, ?, ?)', [url, artist, description])
     db.commit ()
