@@ -9,8 +9,8 @@ drop table if exists images;
  */
 create table comments (
 	id integer primary key autoincrement,
-	text text not null,
-	image_id text not null
+	image_id integer not null,
+	text text not null
 );
 
 
