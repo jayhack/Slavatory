@@ -92,7 +92,7 @@ def show_entries():
     print "==========[ ASSOCIATED COMMENTS ]=========="
     print comments
     print "\n\n"
-    return render_template('show_entries.html', entries=entries, image_id=image_id)
+    return render_template('show_entries.html', entries=entries, image_id=image_id, image_url=url)
 
 
 
