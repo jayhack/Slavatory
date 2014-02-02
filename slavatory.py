@@ -63,9 +63,25 @@ def close_db(error):
 # Function: show_entries
 # ----------------------
 # shows all entries from the blog
-@app.route('/')
+@app.route('/', methods=['GET'])
 def show_entries():
+
+    #==========[ Step 1: establish connection w/ database ]==========
     db = get_db()
+
+    #==========[ Step 2: get image id, then image url ]==========
+    image_id    = request.args.get ('image_id')
+    cur         = db.execute ('select url, artist, description from images where id = (?)', image_id)
+    entries     = cur.fetchall ()
+    url = entries[0][0]
+    artist = entries[0][1]
+    description = entries[0][2]
+    print "url: ", url
+    print "artist: ", artist
+    print "description: ", description
+
+    #==========[ Step 3: get associated comments from db ]==========
+
     cur = db.execute('select text from entries_test order by id asc')
     entries = cur.fetchall()
     return render_template('show_entries.html', entries=entries)
@@ -77,12 +93,19 @@ def show_entries():
 @app.route('/add', methods=['POST'])
 def add_entry():
     db = get_db()
-    db.execute('insert into entries_test (text, painting_id) values (?, ?)', [request.form['text'], request.form['painting_id']])
+    db.execute('insert into comments (text, image_id) values (?, ?)', [request.form['text'], request.form['image_id']])
     db.commit()
     return redirect(url_for('show_entries'))
 
+# Function: add_image
+# -------------------
+# allows you to add an image
+def add_image (url, artist, description):
+    db = get_db ()
+    db.execute ('insert into images (url, artist, description) values (?, ?, ?)', [url, artist, description])
+    db.commit ()
 
 
 if __name__ == '__main__':
-    # init_db()
+    # init_db ()
     app.run()
