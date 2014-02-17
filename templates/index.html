@@ -15,6 +15,7 @@
 		    </ul>
 		    
 		<div class="content">
+			
 			<h2>Please Contemplate Below</h2>
 			<ul class="entries">
 				{% for entry in entries %}
@@ -24,12 +25,13 @@
 					{% endfor %}
 				</ul>
 		      <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
-		      <dl>
-		        <dd><textarea name=text rows=3 cols=40 align=left></textarea>
-		        <dd><input type=hidden name=imageID value={{ image_id }}></dd>
-		        <dd><input type=submit value=Share>
-		      </dl>
-    </form>
+			      <dl>
+			        <dd><textarea name=text rows=3 cols=40 align=left></textarea>
+			        <dd><input type=hidden name=imageID value={{ image_id }}></dd>
+			        <dd><input type=submit value=Share>
+			      </dl>
+		    </form>
+
 		</div>
 
 

@@ -106,34 +106,38 @@ def show_entries():
     """
 
     #==========[ Step 1: establish connection w/ database ]==========
-    db = get_db()
+    # db = get_db()
     # db.execute ('insert into images (url, artist, description) values (?, ?, ?)', ['test_url', 'test_artist', 'test_description'])
     # db.execute ('insert into images (url, artist, description) values (?, ?, ?)', ['test_url_2', 'test_artist_2', 'test_description_2'])    
     # db.commit ()
 
     #==========[ Step 2: get image data ]==========
-    image_id    = request.args.get ('image_id')
-    if not image_id:
-        image_id = 1
-    cur         = db.execute ('select url, artist, description from images where id = (?)', [image_id])
-    entries     = cur.fetchall ()
-    url         = entries[0][0]
-    artist      = entries[0][1]
-    description = entries[0][2]
+    # image_id    = request.args.get ('image_id')
+    # if not image_id:
+        # image_id = 1
+    # cur         = db.execute ('select url, artist, description from images where id = (?)', [image_id])
+    # entries     = cur.fetchall ()
+    # url         = entries[0][0]
+    # artist      = entries[0][1]
+    # description = entries[0][2]
 
-    print "==========[ IMAGE INFO ]=========="
-    print "image id: ", image_id
-    print "url: ", url
-    print "artist: ", artist
-    print "description: ", description
+    # print "==========[ IMAGE INFO ]=========="
+    # print "image id: ", image_id
+    # print "url: ", url
+    # print "artist: ", artist
+    # print "description: ", description
 
-    #==========[ Step 3: get associated comments from db ]==========
-    cur         = db.execute('select text from comments where image_id = (?) order by id asc', [image_id])
-    entries     = cur.fetchall()
-    comments    = [e[0] for e in entries]
-    print "==========[ ASSOCIATED COMMENTS ]=========="
-    print comments
-    print "\n\n"
+    # #==========[ Step 3: get associated comments from db ]==========
+    # cur         = db.execute('select text from comments where image_id = (?) order by id asc', [image_id])
+    # entries     = cur.fetchall()
+    # comments    = [e[0] for e in entries]
+    # print "==========[ ASSOCIATED COMMENTS ]=========="
+    # print comments
+    # print "\n\n"
+
+    entries = [{'title':'title', 'text':'text'}]
+    image_id = 1
+    image_url = 'test_url'
     return render_template('index.html', entries=entries, image_id=image_id, image_url=url)
 
 
