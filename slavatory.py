@@ -209,7 +209,7 @@ if __name__ == '__main__':
 
     #=====[ Mode: database initialization ]=====
     if len(sys.argv) == 2:
-        if sys.argc[1] == 'init_db':
+        if sys.argv[1] == 'init_db':
             init_db (app)
             exit ()
 
