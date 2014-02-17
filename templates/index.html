@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+<body >
+	<div class="wrap">
+	<header class="header">
+		<div class="logo"><a href="index.html"><img src="images/logo.png" alt=""/></a></div>
+		<div class="menu-but"><a href="#menu"><img src="images/menu.png"/></a></div>
+		<br class="clearfix"/>
+	</header>
+		<hr class="separator"/>
+		
+	<div class="container">
+		    <ul id="slider" class="slider">
+		    	<li><img src="1.jpg" alt="" width="200"/></li>
+		    </ul>
+		    
+		<div class="content">
+			<h2>Please Contemplate Below</h2>
+			<ul class="entries">
+				{% for entry in entries %}
+				<li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+					{% else %}
+				<li><em>No Comments Yet</em>
+					{% endfor %}
+				</ul>
+		      <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+		      <dl>
+		        <dd><textarea name=text rows=3 cols=40 align=left></textarea>
+		        <dd><input type=hidden name=imageID value={{ image_id }}></dd>
+		        <dd><input type=submit value=Share>
+		      </dl>
+    </form>
+		</div>
+
+
+
+
+	</div>
+	<hr class="separator"/>
+	<footer class="footer">
+		<p>by Jay Hack, Winter 2014 &bull; All Rights Reserved</p>
+	</footer>
+</body>
+{% endblock %}
